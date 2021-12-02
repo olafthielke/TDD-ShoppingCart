@@ -24,6 +24,13 @@ namespace BusinessLogic
             var cart = new ShoppingCart();
             cart.Total.Should().Be(0);
         }
+
+        [Fact]
+        public void Can_Call_Add()
+        {
+            var cart = new ShoppingCart();
+            cart.Add();
+        }
     }
 
 
