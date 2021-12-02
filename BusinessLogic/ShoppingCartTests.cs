@@ -10,4 +10,10 @@ namespace BusinessLogic
             var cart = new ShoppingCart();
         }
     }
+
+
+    public class ShoppingCart
+    {
+        
+    }
 }
