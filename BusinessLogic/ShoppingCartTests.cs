@@ -38,5 +38,10 @@ namespace BusinessLogic
     {
         public IEnumerable<object> Items { get; } = Enumerable.Empty<object>();
         public int Total { get; } = 0;
+
+        public void Add()
+        {
+
+        }
     }
 }
