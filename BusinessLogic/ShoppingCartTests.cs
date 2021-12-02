@@ -9,6 +9,13 @@ namespace BusinessLogic
         {
             var cart = new ShoppingCart();
         }
+
+        [Fact]
+        public void When_Create_Cart_Then_Cart_Is_Empty()
+        {
+            var cart = new ShoppingCart();
+            cart.Items.Should().BeEmpty();
+        }
     }
 
 
