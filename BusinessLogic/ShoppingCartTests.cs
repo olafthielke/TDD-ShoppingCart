@@ -22,6 +22,6 @@ namespace BusinessLogic
 
     public class ShoppingCart
     {
-        public IEnumerable<object> Items { get; }
+        public IEnumerable<object> Items { get; } = Enumerable.Empty<object>();
     }
 }
