@@ -30,5 +30,6 @@ namespace BusinessLogic
     public class ShoppingCart
     {
         public IEnumerable<object> Items { get; } = Enumerable.Empty<object>();
+        public int Total { get; } = -1;
     }
 }
