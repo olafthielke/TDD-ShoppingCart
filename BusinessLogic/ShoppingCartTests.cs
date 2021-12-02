@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using FluentAssertions;
+using Xunit;
 
 namespace BusinessLogic
 {
@@ -21,6 +22,6 @@ namespace BusinessLogic
 
     public class ShoppingCart
     {
-        
+        public IEnumerable<object> Items { get; }
     }
 }
