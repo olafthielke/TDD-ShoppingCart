@@ -26,13 +26,6 @@ namespace BusinessLogic
         }
 
         [Fact]
-        public void Can_Call_Add()
-        {
-            var cart = new ShoppingCart();
-            cart.Add();
-        }
-
-        [Fact]
         public void Given_No_Product_When_Call_Add_Then_Throw_MissingProduct_Exception()
         {
             var cart = new ShoppingCart();
@@ -47,9 +40,14 @@ namespace BusinessLogic
         public IEnumerable<object> Items { get; } = Enumerable.Empty<object>();
         public int Total { get; } = 0;
 
-        public void Add()
+        public void Add(object product)
         {
 
         }
+    }
+
+    public class MissingProduct : Exception
+    {
+
     }
 }
