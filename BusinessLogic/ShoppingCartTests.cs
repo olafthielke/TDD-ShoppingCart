@@ -31,6 +31,14 @@ namespace BusinessLogic
             var cart = new ShoppingCart();
             cart.Add();
         }
+
+        [Fact]
+        public void Given_No_Product_When_Call_Add_Then_Throw_MissingProduct_Exception()
+        {
+            var cart = new ShoppingCart();
+            Action add = () => cart.Add(null);
+            add.Should().ThrowExactly<MissingProduct>();
+        }
     }
 
 
