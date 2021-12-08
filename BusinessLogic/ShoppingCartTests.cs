@@ -42,7 +42,7 @@ namespace BusinessLogic
 
         public void Add(object product)
         {
-
+            throw new MissingProduct();
         }
     }
 
