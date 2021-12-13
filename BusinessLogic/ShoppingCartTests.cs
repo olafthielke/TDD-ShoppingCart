@@ -48,6 +48,8 @@ namespace BusinessLogic
 
     public class MissingProduct : Exception
     {
-
+        public MissingProduct()
+            : base("Must have a product.")
+        { }
     }
 }
