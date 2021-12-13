@@ -30,7 +30,7 @@ namespace BusinessLogic
         {
             var cart = new ShoppingCart();
             Action add = () => cart.Add(null);
-            add.Should().ThrowExactly<MissingProduct>();
+            add.Should().ThrowExactly<MissingProduct>().WithMessage("Must have a product.");
         }
     }
 
