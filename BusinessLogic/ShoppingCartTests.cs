@@ -60,7 +60,9 @@ namespace BusinessLogic
         {
             if (product == null)
                 throw new MissingProduct();
-            throw new ZeroQuantity();
+            if (quantity == 0)
+                throw new ZeroQuantity();
+            throw new NegativeQuantity();
         }
     }
 
