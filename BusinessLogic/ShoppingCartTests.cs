@@ -70,6 +70,8 @@ namespace BusinessLogic
 
     public class ZeroQuantity : Exception
     {
-
+        public ZeroQuantity()
+            : base("Zero is not a valid quantity.")
+        { }
     }
 }
