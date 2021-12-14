@@ -38,7 +38,7 @@ namespace BusinessLogic
         {
             var cart = new ShoppingCart();
             Action add = () => cart.Add(new Product(), 0);
-            add.Should().ThrowExactly<ZeroQuantity>();
+            add.Should().ThrowExactly<ZeroQuantity>().WithMessage("Zero is not a valid quantity.");
         }
     }
 
