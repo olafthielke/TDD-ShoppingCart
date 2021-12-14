@@ -32,6 +32,14 @@ namespace BusinessLogic
             Action add = () => cart.Add(null);
             add.Should().ThrowExactly<MissingProduct>().WithMessage("Must have a product.");
         }
+
+        [Fact]
+        public void Given_Zero_Quantity_When_Call_Add_Then_Throw_ZeroQuantity_Exception()
+        {
+            var cart = new ShoppingCart();
+            Action add = () => cart.Add(new Product(), 0);
+            add.Should().ThrowExactly<ZeroQuantity>();
+        }
     }
 
 
