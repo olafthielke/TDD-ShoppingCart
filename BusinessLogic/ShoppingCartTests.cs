@@ -82,4 +82,9 @@ namespace BusinessLogic
             : base("Zero is not a valid quantity.")
         { }
     }
+
+    public class NegativeQuantity : Exception
+    {
+
+    }
 }
