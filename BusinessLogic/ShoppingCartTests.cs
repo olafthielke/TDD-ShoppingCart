@@ -29,7 +29,7 @@ namespace BusinessLogic
         public void Given_No_Product_When_Call_Add_Then_Throw_MissingProduct_Exception()
         {
             var cart = new ShoppingCart();
-            Action add = () => cart.Add(null);
+            Action add = () => cart.Add(null, 3);
             add.Should().ThrowExactly<MissingProduct>().WithMessage("Must have a product.");
         }
 
@@ -48,10 +48,15 @@ namespace BusinessLogic
         public IEnumerable<object> Items { get; } = Enumerable.Empty<object>();
         public int Total { get; } = 0;
 
-        public void Add(object product)
+        public void Add(object product, int quantity)
         {
             throw new MissingProduct();
         }
+    }
+
+    public class Product
+    {
+
     }
 
     public class MissingProduct : Exception
@@ -59,5 +64,10 @@ namespace BusinessLogic
         public MissingProduct()
             : base("Must have a product.")
         { }
+    }
+
+    public class ZeroQuantity : Exception
+    {
+
     }
 }
