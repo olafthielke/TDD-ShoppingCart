@@ -50,7 +50,9 @@ namespace BusinessLogic
 
         public void Add(object product, int quantity)
         {
-            throw new MissingProduct();
+            if (product == null)
+                throw new MissingProduct();
+            throw new ZeroQuantity();
         }
     }
 
