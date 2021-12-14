@@ -48,7 +48,7 @@ namespace BusinessLogic
         public IEnumerable<object> Items { get; } = Enumerable.Empty<object>();
         public int Total { get; } = 0;
 
-        public void Add(object product, int quantity)
+        public void Add(Product product, int quantity)
         {
             if (product == null)
                 throw new MissingProduct();
