@@ -87,6 +87,8 @@ namespace BusinessLogic
 
     public class NegativeQuantity : Exception
     {
-
+        public NegativeQuantity()
+            : base("-1 is an invalid quantity.")
+        { }
     }
 }
