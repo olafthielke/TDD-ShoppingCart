@@ -46,7 +46,7 @@ namespace BusinessLogic
         {
             var cart = new ShoppingCart();
             Action add = () => cart.Add(new Product(), -1);
-            add.Should().ThrowExactly<NegativeQuantity>();
+            add.Should().ThrowExactly<NegativeQuantity>().WithMessage("-1 is an invalid quantity.");
         }
     }
 
