@@ -56,8 +56,6 @@ namespace BusinessLogic
         {
             if (product == null)
                 throw new MissingProduct();
-            if (quantity == 0)
-                throw new ZeroQuantity();
             throw new InvalidQuantity(quantity);
         }
     }
@@ -71,13 +69,6 @@ namespace BusinessLogic
     {
         public MissingProduct()
             : base("Must have a product.")
-        { }
-    }
-
-    public class ZeroQuantity : Exception
-    {
-        public ZeroQuantity()
-            : base("Zero is not a valid quantity.")
         { }
     }
 
