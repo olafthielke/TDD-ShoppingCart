@@ -64,7 +64,10 @@ namespace BusinessLogic
         {
             if (product == null)
                 throw new MissingProduct();
-            throw new InvalidQuantity(quantity);
+            if (quantity <= 0)
+                throw new InvalidQuantity(quantity);
+
+            Items.Add(new object());
         }
     }
 
