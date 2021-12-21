@@ -41,7 +41,7 @@ namespace BusinessLogic
         public void Given_Quantity_Is_Invalid_When_Call_Add_Then_Throw_InvalidQuantity_Exception(int quantity)
         {
             var cart = new ShoppingCart();
-            Action add = () => cart.Add(new Product(), quantity);
+            Action add = () => cart.Add(new Product("Apple"), quantity);
             add.Should().ThrowExactly<InvalidQuantity>().WithMessage($"{quantity} is an invalid quantity.");
         }
 
@@ -57,7 +57,7 @@ namespace BusinessLogic
 
     public class ShoppingCart
     {
-        public IEnumerable<object> Items { get; } = Enumerable.Empty<object>();
+        public IList<object> Items { get; } = new List<object>();
         public int Total { get; } = 0;
 
         public void Add(Product product, int quantity)
@@ -70,7 +70,10 @@ namespace BusinessLogic
 
     public class Product
     {
+        public Product(string name)
+        {
 
+        }
     }
 
     public class MissingProduct : Exception
