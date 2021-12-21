@@ -44,6 +44,14 @@ namespace BusinessLogic
             Action add = () => cart.Add(new Product(), quantity);
             add.Should().ThrowExactly<InvalidQuantity>().WithMessage($"{quantity} is an invalid quantity.");
         }
+
+        [Fact]
+        public void Given_3_Apples_When_Call_Add_Then_Have_3_Apples_In_Cart()
+        {
+            var cart = new ShoppingCart();
+            cart.Add(new Product("Apple"), 3);
+            cart.Items.Count.Should().Be(1);
+        }
     }
 
 
