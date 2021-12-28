@@ -51,6 +51,7 @@ namespace BusinessLogic
             var cart = new ShoppingCart();
             cart.Add(new Product("Apple"), 3);
             cart.Items.Count.Should().Be(1);
+            cart.Items[0].Product.Name.Should().Be("Apple");
         }
     }
 
