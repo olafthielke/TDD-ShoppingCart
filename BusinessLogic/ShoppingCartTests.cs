@@ -58,7 +58,7 @@ namespace BusinessLogic
 
     public class ShoppingCart
     {
-        public IList<object> Items { get; } = new List<object>();
+        public IList<ShoppingCartItem> Items { get; } = new List<ShoppingCartItem>();
         public int Total { get; } = 0;
 
         public void Add(Product product, int quantity)
@@ -68,15 +68,27 @@ namespace BusinessLogic
             if (quantity <= 0)
                 throw new InvalidQuantity(quantity);
 
-            Items.Add(new object());
+            Items.Add(new ShoppingCartItem(new Product("Broccoli")));
+        }
+    }
+
+    public class ShoppingCartItem
+    {
+        public Product Product { get; }
+
+        public ShoppingCartItem(Product product)
+        {
+            Product = product;
         }
     }
 
     public class Product
     {
+        public string Name { get; }
+
         public Product(string name)
         {
-
+            Name = name;
         }
     }
 
