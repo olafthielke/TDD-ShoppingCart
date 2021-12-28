@@ -69,17 +69,19 @@ namespace BusinessLogic
             if (quantity <= 0)
                 throw new InvalidQuantity(quantity);
 
-            Items.Add(new ShoppingCartItem(new Product("Apple")));
+            Items.Add(new ShoppingCartItem(new Product("Apple"), 5));
         }
     }
 
     public class ShoppingCartItem
     {
         public Product Product { get; }
+        public int Quantity { get; }
 
-        public ShoppingCartItem(Product product)
+        public ShoppingCartItem(Product product, int quantity)
         {
             Product = product;
+            Quantity = quantity;
         }
     }
 
