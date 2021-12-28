@@ -52,6 +52,7 @@ namespace BusinessLogic
             cart.Add(new Product("Apple"), 3);
             cart.Items.Count.Should().Be(1);
             cart.Items[0].Product.Name.Should().Be("Apple");
+            cart.Items[0].Quantity.Should().Be(3);
         }
     }
 
