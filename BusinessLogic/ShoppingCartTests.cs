@@ -50,10 +50,20 @@ namespace BusinessLogic
         {
             var cart = new ShoppingCart();
             cart.Add(new Product("Apple", 0.35m), 3);
-            cart.Items.Count.Should().Be(1);
-            cart.Items[0].Product.Name.Should().Be("Apple");
-            cart.Items[0].Quantity.Should().Be(3);
-            cart.Total.Should().Be(1.05m);
+            VerifyCart(cart, 1, 1.05m);
+            VerifyCartItem(cart.Items.First(), "Apple", 3);
+        }
+
+        private static void VerifyCart(ShoppingCart cart, int itemsCount, decimal total)
+        {
+            cart.ItemsCount.Should().Be(itemsCount);
+            cart.Total.Should().Be(total);
+        }
+
+        private static void VerifyCartItem(ShoppingCartItem item, string productName, int quantity)
+        {
+            item.ProductName.Should().Be(productName);
+            item.Quantity.Should().Be(quantity);
         }
     }
 
@@ -62,6 +72,7 @@ namespace BusinessLogic
     {
         public IList<ShoppingCartItem> Items { get; } = new List<ShoppingCartItem>();
         public decimal Total => Items.Any() ? 1.05m : 0;
+        public int ItemsCount => Items.Count;
 
         public void Add(Product product, int quantity)
         {
@@ -78,6 +89,7 @@ namespace BusinessLogic
     {
         public Product Product { get; }
         public int Quantity { get; }
+        public string ProductName => Product.Name;
 
         public ShoppingCartItem(Product product, int quantity)
         {
@@ -89,12 +101,10 @@ namespace BusinessLogic
     public class Product
     {
         public string Name { get; }
-        public decimal UnitPrice { get; }
 
         public Product(string name, decimal unitPrice)
         {
             Name = name;
-            UnitPrice = unitPrice;
         }
     }
 
