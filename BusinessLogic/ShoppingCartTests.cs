@@ -49,10 +49,11 @@ namespace BusinessLogic
         public void Given_3_Apples_When_Call_Add_Then_Have_3_Apples_In_Cart()
         {
             var cart = new ShoppingCart();
-            cart.Add(new Product("Apple"), 3);
+            cart.Add(new Product("Apple", 0.35m), 3);
             cart.Items.Count.Should().Be(1);
             cart.Items[0].Product.Name.Should().Be("Apple");
             cart.Items[0].Quantity.Should().Be(3);
+            cart.Total.Should().Be(1.05m);
         }
     }
 
