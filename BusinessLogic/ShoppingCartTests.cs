@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using BusinessLogic.Exceptions;
+using FluentAssertions;
 using Xunit;
 
 namespace BusinessLogic
@@ -54,6 +55,7 @@ namespace BusinessLogic
             VerifyCartItem(cart.Items.First(), "Apple", 3);
         }
 
+
         private static void VerifyCart(ShoppingCart cart, int itemsCount, decimal total)
         {
             cart.ItemsCount.Should().Be(itemsCount);
@@ -65,60 +67,5 @@ namespace BusinessLogic
             item.ProductName.Should().Be(productName);
             item.Quantity.Should().Be(quantity);
         }
-    }
-
-
-    public class ShoppingCart
-    {
-        public IList<ShoppingCartItem> Items { get; } = new List<ShoppingCartItem>();
-        public decimal Total => Items.Any() ? 1.05m : 0;
-        public int ItemsCount => Items.Count;
-
-        public void Add(Product product, int quantity)
-        {
-            if (product == null)
-                throw new MissingProduct();
-            if (quantity <= 0)
-                throw new InvalidQuantity(quantity);
-
-            Items.Add(new ShoppingCartItem(new Product("Apple", 0.35m), 3));
-        }
-    }
-
-    public class ShoppingCartItem
-    {
-        public Product Product { get; }
-        public int Quantity { get; }
-        public string ProductName => Product.Name;
-
-        public ShoppingCartItem(Product product, int quantity)
-        {
-            Product = product;
-            Quantity = quantity;
-        }
-    }
-
-    public class Product
-    {
-        public string Name { get; }
-
-        public Product(string name, decimal unitPrice)
-        {
-            Name = name;
-        }
-    }
-
-    public class MissingProduct : Exception
-    {
-        public MissingProduct()
-            : base("Must have a product.")
-        { }
-    }
-
-    public class InvalidQuantity : Exception
-    {
-        public InvalidQuantity(int quantity)
-            : base($"{quantity} is an invalid quantity.")
-        { }
     }
 }
