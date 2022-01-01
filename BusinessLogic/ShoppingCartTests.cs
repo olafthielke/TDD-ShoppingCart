@@ -60,6 +60,7 @@ namespace BusinessLogic
         {
             var cart = new ShoppingCart();
             cart.Add(new Product("Banana", 0.75m), 5);
+            VerifyCart(cart, 1, 3.75m);
             VerifyCartItem(cart.Items.First(), "Banana", 5);
         }
 
