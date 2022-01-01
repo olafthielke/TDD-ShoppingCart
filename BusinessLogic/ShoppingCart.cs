@@ -15,7 +15,7 @@ namespace BusinessLogic
             if (quantity <= 0)
                 throw new InvalidQuantity(quantity);
 
-            Items.Add(new ShoppingCartItem(new Product("Apple", 0.35m), 3));
+            Items.Add(new ShoppingCartItem(product, quantity));
         }
     }
 }
