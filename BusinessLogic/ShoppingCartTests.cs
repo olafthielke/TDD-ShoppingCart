@@ -55,6 +55,14 @@ namespace BusinessLogic
             VerifyCartItem(cart.Items.First(), "Apple", 3);
         }
 
+        [Fact]
+        public void Given_5_Bananas_When_Call_Add_Then_Have_5_Bananas_In_Cart()
+        {
+            var cart = new ShoppingCart();
+            cart.Add(new Product("Banana", 0.75m), 5);
+            VerifyCartItem(cart.Items.First(), "Banana", 5);
+        }
+
 
         private static void VerifyCart(ShoppingCart cart, int itemsCount, decimal total)
         {
