@@ -49,6 +49,7 @@ namespace BusinessLogic
         [Theory]
         [InlineData("Apple", 2, 3)]
         [InlineData("Banana", 0.75, 5)]
+        [InlineData("Cantaloupe", 2.5, 11)]
         public void Given_Have_Quantity_Of_A_Product_When_Call_Add_Then_Have_Product_In_Cart(string productName,
             decimal unitPrice, int quantity)
         {
