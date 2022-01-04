@@ -1,4 +1,6 @@
-﻿namespace BusinessLogic
+﻿using BusinessLogic.Exceptions;
+
+namespace BusinessLogic
 {
     public class ShoppingCartItem
     {
@@ -10,6 +12,11 @@
 
         public ShoppingCartItem(Product product, int quantity)
         {
+            if (product == null)
+                throw new MissingProduct();
+            if (quantity <= 0)
+                throw new InvalidQuantity(quantity);
+
             Product = product;
             Quantity = quantity;
         }
