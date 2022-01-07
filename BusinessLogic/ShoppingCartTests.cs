@@ -56,7 +56,17 @@ namespace BusinessLogic
             var cart = new ShoppingCart();
             cart.Add(new Product(productName, unitPrice), quantity);
             VerifyCart(cart, 1, quantity * unitPrice);
-            VerifyCartItem(cart.Items.First(), productName, quantity);
+            VerifyCartItem(cart.Items.First(), productName, unitPrice, quantity);
+        }
+
+        [Fact]
+        public void Given_Have_Two_Products_When_Call_Add_Then_Have_Two_Products_In_Cart()
+        {
+            var cart = new ShoppingCart();
+            cart.Add(new Product("Apple", 0.35m), 5);
+            cart.Add(new Product("Banana", 0.75m), 8);
+            VerifyCartItem(cart.Items[0], "Apple", 0.35m, 5);
+            VerifyCartItem(cart.Items[1], "Banana", 0.75m, 8);
         }
 
 
@@ -66,9 +76,11 @@ namespace BusinessLogic
             cart.Total.Should().Be(total);
         }
 
-        private static void VerifyCartItem(ShoppingCartItem item, string productName, int quantity)
+        private static void VerifyCartItem(ShoppingCartItem item,
+            string productName, decimal unitPrice, int quantity)
         {
             item.ProductName.Should().Be(productName);
+            item.UnitPrice.Should().Be(unitPrice);
             item.Quantity.Should().Be(quantity);
         }
     }
