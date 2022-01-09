@@ -63,18 +63,29 @@ namespace BusinessLogic
         public void Given_Have_Two_Products_When_Call_Add_Then_Have_Two_Products_In_Cart()
         {
             var cart = new ShoppingCart();
-            cart.Add(new Product("Apple", 0.35m), 5);
-            cart.Add(new Product("Banana", 0.75m), 8);
-            VerifyCart(cart, 2, 5 * 0.35m + 8 * 0.75m);
-            VerifyCartItem(cart.Items[0], "Apple", 0.35m, 5);
-            VerifyCartItem(cart.Items[1], "Banana", 0.75m, 8);
+            cart.Add(Apple, 5);
+            cart.Add(Banana, 8);
+            VerifyCart(cart, 2, 5 * Apple.UnitPrice + 8 * Banana.UnitPrice);
+            VerifyCartItem(cart.Items[0], Apple, 5);
+            VerifyCartItem(cart.Items[1], Banana, 8);
         }
+
+
+        private readonly static Product Apple = new Product("Apple", 0.35m);
+        private readonly static Product Banana = new Product("Banana", 0.75m);
 
 
         private static void VerifyCart(ShoppingCart cart, int itemsCount, decimal total)
         {
             cart.ItemsCount.Should().Be(itemsCount);
             cart.Total.Should().Be(total);
+        }
+
+        private static void VerifyCartItem(ShoppingCartItem item,
+            Product product, int quantity)
+        {
+            item.Product.Should().BeEquivalentTo(product);
+            item.Quantity.Should().Be(quantity);
         }
 
         private static void VerifyCartItem(ShoppingCartItem item,
