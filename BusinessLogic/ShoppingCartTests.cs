@@ -70,9 +70,23 @@ namespace BusinessLogic
             VerifyCartItem(cart.Items[1], Banana, 8);
         }
 
+        [Fact]
+        public void Given_Have_Three_Products_When_Call_Add_Then_Have_Three_Products_In_Cart()
+        {
+            var cart = new ShoppingCart();
+            cart.Add(Cantaloupe, 10);
+            cart.Add(Banana, 20);
+            cart.Add(Apple, 30);
+            VerifyCart(cart, 3, 10 * Cantaloupe.UnitPrice + 20 * Banana.UnitPrice + 30 * Apple.UnitPrice);
+            VerifyCartItem(cart.Items[0], Cantaloupe, 10);
+            VerifyCartItem(cart.Items[1], Banana, 20);
+            VerifyCartItem(cart.Items[2], Apple, 30);
+        }
+
 
         private readonly static Product Apple = new Product("Apple", 0.35m);
         private readonly static Product Banana = new Product("Banana", 0.75m);
+        private readonly static Product Cantaloupe = new Product("Cantaloupe", 2.5m);
 
 
         private static void VerifyCart(ShoppingCart cart, int itemsCount, decimal total)
