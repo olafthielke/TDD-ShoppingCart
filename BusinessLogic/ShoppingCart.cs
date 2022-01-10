@@ -11,5 +11,10 @@
             var newItem = new ShoppingCartItem(product, quantity);
             Items.Add(newItem);
         }
+
+        public void Clear()
+        {
+
+        }
     }
 }
