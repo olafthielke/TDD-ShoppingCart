@@ -14,7 +14,7 @@
 
         public void Clear()
         {
-
+            Items.Clear();
         }
     }
 }
