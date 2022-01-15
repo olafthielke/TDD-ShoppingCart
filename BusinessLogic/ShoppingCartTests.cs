@@ -90,6 +90,15 @@ namespace BusinessLogic
             cart.Clear();
         }
 
+        [Fact]
+        public void Given_Empty_Cart_When_Call_Clear_Then_Have_Empty_Cart()
+        {
+            var cart = new ShoppingCart();
+            cart.Clear();
+            cart.Items.Should().BeEmpty();
+            cart.Total.Should().Be(0);
+        }
+
 
         private readonly static Product Apple = new Product("Apple", 0.35m);
         private readonly static Product Banana = new Product("Banana", 0.75m);
