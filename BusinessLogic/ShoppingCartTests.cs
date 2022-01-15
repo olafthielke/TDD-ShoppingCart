@@ -95,8 +95,7 @@ namespace BusinessLogic
         {
             var cart = new ShoppingCart();
             cart.Clear();
-            cart.Items.Should().BeEmpty();
-            cart.Total.Should().Be(0);
+            VerifyCartIsEmpty(cart);
         }
 
 
@@ -104,6 +103,12 @@ namespace BusinessLogic
         private readonly static Product Banana = new Product("Banana", 0.75m);
         private readonly static Product Cantaloupe = new Product("Cantaloupe", 2.5m);
 
+
+        private static void VerifyCartIsEmpty(ShoppingCart cart)
+        {
+            cart.Items.Should().BeEmpty();
+            cart.Total.Should().Be(0);
+        }
 
         private static void VerifyCart(ShoppingCart cart, int itemsCount, decimal total)
         {
