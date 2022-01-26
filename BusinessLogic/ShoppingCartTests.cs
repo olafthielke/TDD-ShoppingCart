@@ -118,6 +118,13 @@ namespace BusinessLogic
             VerifyCartIsEmpty(cart);
         }
 
+        [Fact]
+        public void Can_Call_Remove_On_Cart()
+        {
+            var cart = new ShoppingCart();
+            cart.Remove();
+        }
+
 
         private readonly static Product Apple = new Product("Apple", 0.35m);
         private readonly static Product Banana = new Product("Banana", 0.75m);
