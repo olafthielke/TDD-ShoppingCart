@@ -12,6 +12,11 @@
             Items.Add(newItem);
         }
 
+        public void Remove()
+        {
+
+        }
+
         public void Clear()
         {
             Items.Clear();
