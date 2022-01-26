@@ -119,13 +119,6 @@ namespace BusinessLogic
         }
 
         [Fact]
-        public void Can_Call_Remove_On_Cart()
-        {
-            var cart = new ShoppingCart();
-            cart.Remove();
-        }
-
-        [Fact]
         public void Given_Empty_Cart_When_Call_Remove_On_Apple_Then_Have_Empty_Cart()
         {
             var cart = new ShoppingCart();

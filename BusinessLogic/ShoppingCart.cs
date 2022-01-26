@@ -12,7 +12,7 @@
             Items.Add(newItem);
         }
 
-        public void Remove()
+        public void Remove(string productName)
         {
 
         }
