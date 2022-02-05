@@ -14,7 +14,9 @@
 
         public void Remove(string productName)
         {
-
+            var item = Items.FirstOrDefault(i => i.ProductName == productName);
+            if (item != null)
+                Items.Remove(item);
         }
 
         public void Clear()
