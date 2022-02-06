@@ -145,6 +145,24 @@ namespace BusinessLogic
             VerifyCartIsEmpty(cart);
         }
 
+        [Fact]
+        public void Given_Have_Apples_Bananas_And_Cantaloupes_In_Cart_When_Call_Remove_Bananas_Then_Have_Apples_and_Cantaloupes_In_Cart()
+        {
+            // Arrange
+            var cart = new ShoppingCart();
+            cart.Add(Apple, 1);
+            cart.Add(Banana, 2);
+            cart.Add(Cantaloupe, 3);
+
+            // Act
+            cart.Remove(Banana.Name);
+
+            // Assert
+            VerifyCart(cart, 2, 1 * Apple.UnitPrice + 3 * Cantaloupe.UnitPrice);
+            VerifyCartItem(cart.Items[0], Apple, 1);
+            VerifyCartItem(cart.Items[1], Cantaloupe, 3);
+        }
+
 
         private readonly static Product Apple = new Product("Apple", 0.35m);
         private readonly static Product Banana = new Product("Banana", 0.75m);
