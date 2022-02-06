@@ -84,6 +84,18 @@ namespace BusinessLogic
         }
 
         [Fact]
+        public void Given_Have_Apples_In_Cart_When_Call_Add_With_More_Apples_Then_Have_Two_Apple_Items_In_Cart()
+        {
+            var cart = new ShoppingCart();
+            cart.Add(Apple, 3);
+            cart.Add(Apple, 7);
+
+            VerifyCart(cart, 2, 10 * Apple.UnitPrice);
+            VerifyCartItem(cart.Items[0], Apple, 3);
+            VerifyCartItem(cart.Items[1], Apple, 7);
+        }
+
+        [Fact]
         public void Can_Call_Clear_On_Cart()
         {
             var cart = new ShoppingCart();
