@@ -46,6 +46,15 @@ namespace BusinessLogic
             add.Should().ThrowExactly<InvalidQuantity>().WithMessage($"{quantity} is an invalid quantity.");
         }
 
+        [Fact]
+        public void Given_Have_Apples_In_Cart_When_Call_Add_With_More_Apples_Then_Throw_ProductAlreadyInCart_Exception()
+        {
+            var cart = new ShoppingCart();
+            cart.Add(Apple, 3);
+            Action add = () => cart.Add(Apple, 7);
+            add.Should().ThrowExactly<ProductAlreadyInCart>();
+        }
+
         [Theory]
         [InlineData("Apple", 2, 3)]
         [InlineData("Banana", 0.75, 5)]
@@ -81,18 +90,6 @@ namespace BusinessLogic
             VerifyCartItem(cart.Items[0], Cantaloupe, 10);
             VerifyCartItem(cart.Items[1], Banana, 20);
             VerifyCartItem(cart.Items[2], Apple, 30);
-        }
-
-        [Fact]
-        public void Given_Have_Apples_In_Cart_When_Call_Add_With_More_Apples_Then_Have_Two_Apple_Items_In_Cart()
-        {
-            var cart = new ShoppingCart();
-            cart.Add(Apple, 3);
-            cart.Add(Apple, 7);
-
-            VerifyCart(cart, 2, 10 * Apple.UnitPrice);
-            VerifyCartItem(cart.Items[0], Apple, 3);
-            VerifyCartItem(cart.Items[1], Apple, 7);
         }
 
         [Fact]
