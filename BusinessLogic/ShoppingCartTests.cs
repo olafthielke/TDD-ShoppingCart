@@ -52,7 +52,7 @@ namespace BusinessLogic
             var cart = new ShoppingCart();
             cart.Add(Apple, 3);
             Action add = () => cart.Add(Apple, 7);
-            add.Should().ThrowExactly<ProductAlreadyInCart>();
+            add.Should().ThrowExactly<ProductAlreadyInCart>().WithMessage("Product 'Apple' is already in the cart.");
         }
 
         [Theory]
