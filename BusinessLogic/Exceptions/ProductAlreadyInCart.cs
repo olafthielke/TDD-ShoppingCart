@@ -2,8 +2,8 @@
 {
     public class ProductAlreadyInCart : Exception
     {
-        public ProductAlreadyInCart()
-            : base("Product 'Apple' is already in the cart.")
+        public ProductAlreadyInCart(string productName)
+            : base($"Product '{productName}' is already in the cart.")
         { }
     }
 }

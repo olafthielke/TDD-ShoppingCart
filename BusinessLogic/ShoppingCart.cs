@@ -10,9 +10,9 @@ namespace BusinessLogic
 
         public void Add(Product product, int quantity)
         {
-            var item = Items.SingleOrDefault(i => i.ProductName == "Apple");
-            if (item != null && product.Name == "Apple")
-                throw new ProductAlreadyInCart();
+            var item = Items.SingleOrDefault(i => i.ProductName == product.Name);
+            if (item != null)
+                throw new ProductAlreadyInCart(product.Name);
 
             var newItem = new ShoppingCartItem(product, quantity);
             Items.Add(newItem);
