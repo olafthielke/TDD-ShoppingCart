@@ -55,6 +55,15 @@ namespace BusinessLogic
             add.Should().ThrowExactly<ProductAlreadyInCart>().WithMessage("Product 'Apple' is already in the cart.");
         }
 
+        [Fact]
+        public void Given_Have_Bananas_In_Cart_When_Call_Add_With_More_Bananas_Then_Throw_ProductAlreadyInCart_Exception()
+        {
+            var cart = new ShoppingCart();
+            cart.Add(Banana, 3);
+            Action add = () => cart.Add(Banana, 7);
+            add.Should().ThrowExactly<ProductAlreadyInCart>().WithMessage("Product 'Banana' is already in the cart.");
+        }
+
         [Theory]
         [InlineData("Apple", 2, 3)]
         [InlineData("Banana", 0.75, 5)]
