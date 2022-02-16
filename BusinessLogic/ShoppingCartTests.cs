@@ -46,22 +46,17 @@ namespace BusinessLogic
             add.Should().ThrowExactly<InvalidQuantity>().WithMessage($"{quantity} is an invalid quantity.");
         }
 
-        [Fact]
-        public void Given_Have_Apples_In_Cart_When_Call_Add_With_More_Apples_Then_Throw_ProductAlreadyInCart_Exception()
+        [Theory]
+        [InlineData("Apple")]
+        [InlineData("Banana")]
+        [InlineData("Cantaloupe")]
+        public void Given_Have_Product_In_Cart_When_Call_Add_With_More_Same_Product_Then_Throw_ProductAlreadyInCart_Exception(string productName)
         {
             var cart = new ShoppingCart();
-            cart.Add(Apple, 3);
-            Action add = () => cart.Add(Apple, 7);
-            add.Should().ThrowExactly<ProductAlreadyInCart>().WithMessage("Product 'Apple' is already in the cart.");
-        }
-
-        [Fact]
-        public void Given_Have_Bananas_In_Cart_When_Call_Add_With_More_Bananas_Then_Throw_ProductAlreadyInCart_Exception()
-        {
-            var cart = new ShoppingCart();
-            cart.Add(Banana, 3);
-            Action add = () => cart.Add(Banana, 7);
-            add.Should().ThrowExactly<ProductAlreadyInCart>().WithMessage("Product 'Banana' is already in the cart.");
+            var product = new Product(productName, 1);
+            cart.Add(product, 3);
+            Action add = () => cart.Add(product, 7);
+            add.Should().ThrowExactly<ProductAlreadyInCart>().WithMessage($"Product '{productName}' is already in the cart.");
         }
 
         [Theory]
