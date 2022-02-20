@@ -5,7 +5,7 @@ namespace BusinessLogic
     public class ShoppingCartItem
     {
         public Product Product { get; }
-        public int Quantity { get; }
+        public int Quantity { get; set; }
         public string ProductName => Product.Name;
         public decimal UnitPrice => Product.UnitPrice;
         public decimal Subtotal => Quantity * UnitPrice;

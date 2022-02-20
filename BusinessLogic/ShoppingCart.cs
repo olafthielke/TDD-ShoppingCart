@@ -12,10 +12,14 @@ namespace BusinessLogic
         {
             var item = Items.SingleOrDefault(i => i.ProductName == product.Name);
             if (item != null)
-                throw new ProductAlreadyInCart(product.Name);
-
-            var newItem = new ShoppingCartItem(product, quantity);
-            Items.Add(newItem);
+            {
+                item.Quantity += quantity;
+            }
+            else
+            {
+                var newItem = new ShoppingCartItem(product, quantity);
+                Items.Add(newItem);
+            }
         }
 
         public void Remove(string productName)
