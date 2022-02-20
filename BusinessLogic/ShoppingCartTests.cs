@@ -50,13 +50,14 @@ namespace BusinessLogic
         [InlineData("Apple")]
         [InlineData("Banana")]
         [InlineData("Cantaloupe")]
-        public void Given_Have_Product_In_Cart_When_Call_Add_With_More_Same_Product_Then_Throw_ProductAlreadyInCart_Exception(string productName)
+        public void Given_Have_Product_In_Cart_When_Call_Add_With_More_Same_Product_Then_Merge_Product_Quantities(string productName)
         {
             var cart = new ShoppingCart();
             var product = new Product(productName, 1);
             cart.Add(product, 3);
-            Action add = () => cart.Add(product, 7);
-            add.Should().ThrowExactly<ProductAlreadyInCart>().WithMessage($"Product '{productName}' is already in the cart.");
+            cart.Add(product, 7);
+            VerifyCart(cart, 1, 10 * product.UnitPrice);
+            VerifyCartItem(cart.Items[0], product, 10);
         }
 
         [Theory]
