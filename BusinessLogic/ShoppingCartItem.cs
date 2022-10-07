@@ -12,8 +12,6 @@ namespace BusinessLogic
 
         public ShoppingCartItem(Product product, int quantity)
         {
-            if (product == null)
-                throw new MissingProduct();
             if (quantity <= 0)
                 throw new InvalidQuantity(quantity);
 

@@ -10,21 +10,17 @@ namespace BusinessLogic
 
         public void Add(Product product, int quantity)
         {
-            var item = Items.SingleOrDefault(i => i.ProductName == product.Name);
+            ValidateAdd(product);
+            var item = GetItem(product.Name);
             if (item != null)
-            {
                 item.Quantity += quantity;
-            }
             else
-            {
-                var newItem = new ShoppingCartItem(product, quantity);
-                Items.Add(newItem);
-            }
+                Items.Add(new ShoppingCartItem(product, quantity));
         }
 
         public void Remove(string productName)
         {
-            var item = Items.FirstOrDefault(i => i.ProductName == productName);
+            var item = GetItem(productName);
             if (item != null)
                 Items.Remove(item);
         }
@@ -32,6 +28,18 @@ namespace BusinessLogic
         public void Clear()
         {
             Items.Clear();
+        }
+
+
+        private static void ValidateAdd(Product product)
+        {
+            if (product == null)
+                throw new MissingProduct();
+        }
+
+        private ShoppingCartItem? GetItem(string productName)
+        {
+            return Items.SingleOrDefault(i => i.ProductName == productName);
         }
     }
 }
